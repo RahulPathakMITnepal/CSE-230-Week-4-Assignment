@@ -1,0 +1,160 @@
+/* ---------- Basic page setup ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #757373, #b8b6b6);  /* soft blue background */
+  color: black;
+  text-align: center;
+}
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  margin: 0 0 28px 0;
+  color: #000;
+  font-size: 1rem;
+}
+
+/* ---------- Slider window (the mask) ---------- */
+.slider {
+  position: relative;        /* so arrows and dots can be placed inside it */
+  width: 100%;
+  overflow: hidden;          /* hides the slides that are outside the window */
+  border-radius: 16px;
+  background-color: #000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Sliding track ---------- */
+.slider-track {
+  display: flex;             /* puts all slides in one row */
+  transition: transform 0.5s ease-in-out;  /* smooth sliding */
+}
+
+/* ---------- Each slide ---------- */
+.slide {
+  flex: 0 0 100%;            /* every slide is exactly as wide as the window */
+  aspect-ratio: 16 / 9;      /* keeps the same shape on every screen */
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;         /* fills the box without stretching the image */ /*was cover but changed it to contain*/
+  display: block;
+}
+
+/* ---------- Previous / Next buttons ---------- */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);   /* frosted glass look */
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow-left {
+  left: 14px;
+}
+
+.arrow-right {
+  right: 14px;
+}
+
+/* ---------- Dots ---------- */
+.dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 0 14px 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  /* dark fade at the bottom so the dots are easy to see */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+  width: 28px;               /* active dot becomes a small pill */
+  background-color: white;
+}
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 600px) {
+  body {
+    padding: 25px 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .slider {
+    border-radius: 10px;
+  }
+
+  .arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .arrow-left {
+    left: 8px;
+  }
+
+  .arrow-right {
+    right: 8px;
+  }
+
+  .dot.active {
+    width: 22px;
+  }
+}
